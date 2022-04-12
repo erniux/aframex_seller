@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Capacidad compuerta</h1>
+
+<div id="capacidad_compuerta">
+  <% @capacidad_compuerta.each do |capacidad_compuertum| %>
+    <%= render capacidad_compuertum %>
+    <p>
+      <%= link_to "Show this capacidad compuertum", capacidad_compuertum %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New capacidad compuertum", new_capacidad_compuertum_path %>

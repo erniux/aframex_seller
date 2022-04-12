@@ -1,0 +1,2 @@
+module CapacidadCompuertaHelper
+end

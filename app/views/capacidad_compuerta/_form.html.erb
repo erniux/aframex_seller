@@ -1,0 +1,32 @@
+<%= form_with(model: capacidad_compuertum) do |form| %>
+  <% if capacidad_compuertum.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(capacidad_compuertum.errors.count, "error") %> prohibited this capacidad_compuertum from being saved:</h2>
+
+      <ul>
+        <% capacidad_compuertum.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :carga, style: "display: block" %>
+    <%= form.text_field :carga %>
+  </div>
+
+  <div>
+    <%= form.label :ancho, style: "display: block" %>
+    <%= form.text_field :ancho %>
+  </div>
+
+  <div>
+    <%= form.label :valor, style: "display: block" %>
+    <%= form.text_field :valor %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

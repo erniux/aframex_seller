@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  carga: 1.5
+  ancho: 1.5
+  valor: 1.5
+
+two:
+  carga: 1.5
+  ancho: 1.5
+  valor: 1.5

@@ -1,0 +1,263 @@
+<div class ="container">
+<%= javascript_include_tag :calcula_paso_agua %> include_tag :calcula_paso_agua %>
+  <%= form_with(model: cotiza_compuertum, remote: true) do |form| %>
+    <% if cotiza_compuertum.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(cotiza_compuertum.errors.count, "error") %> prohibited this cotiza_compuertum from being saved:</h2>
+
+        <ul>
+          <% cotiza_compuertum.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.label :cantidad, style: "display: block" %>
+      <%= form.text_field :cantidad %>
+    </div>
+
+    <div>
+      <%= form.label :tipo, style: "display: block" %>
+      <%= form.select :tipo, ['Deslizante', 'Rodante', 'Hidrodinámica', 'Miller', 'Charnela', 'Vertedero', 'Ataguía Deslizante', 'Ataguìa Rodante'] %>
+    </div>
+
+    <div>
+      <%= form.label :instalacion, style: "display: block" %>
+      <%= form.select :instalacion, ['Mural', 'Canal', 'Otra'] %>
+      <%= form.text_field :desc_inst_otro %>
+    </div>
+
+    <div>
+      <%= form.label :uso, style: "display: block" %>
+      <%= form.select :uso, ['Aislamiento', 'Regulación'] %>
+    </div>
+
+    <div>
+      <%= form.label :naturaleza_agua, style: "display: block" %>
+      <%= form.select :naturaleza_agua, ['Residuales', 'Pluvial', 'Industrial', 'de Rio', 'de Mar', 'Presa', 'Otra'] %>
+      <%= form.text_field :agua_otro_desc %>
+    </div>
+
+    <div>
+      <%= form.label :ancho_vano_hueco, style: "display: block" %>
+      <%= form.text_field :ancho_vano_hueco %>
+    </div>
+    <div>
+      <%= form.label :alto_vano_hueco, style: "display: block" %>
+      <%= form.text_field :alto_vano_hueco %>
+    </div>
+    <div>
+      <%= form.label :altura_piso_operacion, style: "display: block" %>
+      <%= form.text_field :altura_piso_operacion %>
+    </div>
+    <div>
+      <%= form.label :carga_estatica, style: "display: block" %>
+      <%= form.text_field :carga_estatica, onblur: "calculaPasoAgua()" %>
+      
+    </div>
+    <script>
+      function calculaPasoAgua() {
+        var ce = document.getElementById("cotiza_compuertum_carga_estatica");
+        var l = document.getElementById("cotiza_compuertum_ancho_vano_hueco");
+        var h = document.getElementById("cotiza_compuertum_alto_vano_hueco");
+        var npo = document.getElementById("cotiza_compuertum_altura_piso_operacion");
+        console.log(ce.value, l.value, h.value, npo.value);
+        var pp = function calcula_paso_agua (l, ce) {
+            source: "/cotiza_compuerta/calcula_paso_agua"
+            alto: l
+            carga: ce
+        }
+        console.log(pp);
+      }
+
+    </script>
+    
+    <div id="result"></div>
+
+    <div>
+      <%= form.label :op_carga, style: "display: block" %>
+      <%= form.select :op_carga, ['Equilibradas', 'Desequilibradas'] %>
+    </div>
+
+    <div>
+      <%= form.label :sentido_sellado, style: "display: block" %>
+      <%= form.select :sentido_sellado, ['A->B', 'B->A', 'A<->B'] %>
+    </div>
+
+    <div>
+      <%= form.label :perimetro_sellado, style: "display: block" %>
+      <%= form.select :perimetro_sellado, ['3 Lados', '4 Lados'] %>
+    </div>
+
+    <div>
+      <%= form.label :mecanismo_operacion, style: "display: block" %>
+      <%= form.select :mecanismo_operacion, ['Elèctrico', 'Manual a Volante', 'Unidad de potencia hidráulica', 'Cilindro neumático', 'Caja de engranes', 'Volante directo', 'Malacate'] %>
+    </div>
+
+    <div>
+      <%= form.label :tiempo_maniobra_abertura, style: "display: block" %>
+      <%= form.text_field :tiempo_maniobra_abertura %>
+    </div>
+
+    <div>
+      <%= form.label :tiempo_maniobra_cierre, style: "display: block" %>
+      <%= form.text_field :tiempo_maniobra_cierre %>
+    </div>
+
+    <div>
+      <%= form.label :frecuencia_accionamiento, style: "display: block" %>
+      <%= form.text_field :frecuencia_accionamiento %>
+    </div>
+
+    <div>
+      <%= form.label :energia_voltaje, style: "display: block" %>
+      <%= form.text_field :energia_voltaje %>
+    </div>
+
+    <div>
+      <%= form.label :energia_frecuencia, style: "display: block" %>
+      <%= form.text_field :energia_frecuencia %>
+    </div>
+
+    <div>
+      <%= form.label :energia_fases, style: "display: block" %>
+      <%= form.text_field :energia_fases %>
+    </div>
+
+    <div>
+      <%= form.label :recubrimiento_primario, style: "display: block" %>
+      <%= form.check_box :recubrimiento_primario %>
+    </div>
+
+    <div>
+      <%= form.label :recubrimiento_amerlock, style: "display: block" %>
+      <%= form.check_box :recubrimiento_amerlock %>
+    </div>
+
+    <div>
+      <%= form.label :recubrimiento_gpic, style: "display: block" %>
+      <%= form.check_box :recubrimiento_gpic %>
+    </div>
+
+    <div>
+      <%= form.label :recubrimiento_otro, style: "display: block" %>
+      <%= form.check_box :recubrimiento_otro %>
+      <%= form.text_field :recubrimiento_otro_desc %>
+    </div>
+
+    <div>
+      <%= form.label :normas_cfe, style: "display: block" %>
+      <%= form.check_box :normas_cfe %>
+    </div>
+
+    <div>
+      <%= form.label :normas_cna, style: "display: block" %>
+      <%= form.check_box :normas_cna %>
+    </div>
+
+    <div>
+      <%= form.label :normas_pemex, style: "display: block" %>
+      <%= form.check_box :normas_pemex %>
+    </div>
+
+    <div>
+      <%= form.label :normas_otra, style: "display: block" %>
+      <%= form.check_box :normas_otra %>
+      <%= form.text_field :normas_otra_desc %>
+    </div>
+
+    <div>
+      <%= form.label :otros_transporte, style: "display: block" %>
+      <%= form.check_box :otros_transporte %>
+    </div>
+
+    <div>
+      <%= form.label :otros_montaje, style: "display: block" %>
+      <%= form.check_box :otros_montaje %>
+    </div>
+
+    <div>
+      <%= form.label :otros_supervision, style: "display: block" %>
+      <%= form.check_box :otros_supervision %>
+    </div>
+
+    <div>
+      <%= form.label :otros_elab_dib_hea, style: "display: block" %>
+      <%= form.check_box :otros_elab_dib_hea %>
+    </div>
+
+    <div>
+      <%= form.label :otros_elab_dib_poc, style: "display: block" %>
+      <%= form.check_box :otros_elab_dib_poc %>
+    </div>
+
+
+  
+    <div>
+      <%= form.label :mat_tablero_compuerta, style: "display: block" %>
+      <%= form.select :mat_tablero_compuerta, ['AI T 304', 'AC'] %>
+    </div>
+
+    <div>
+      <%= form.label :mat_marco, style: "display: block" %>
+      <%= form.select :mat_marco, ['AI T 304', 'AC'] %>
+    </div>
+
+    <div>
+      <%= form.label :mat_pedestal, style: "display: block" %>
+      <%= form.select :mat_pedestal, ['AC', 'AI T 304'] %>
+    </div>
+
+    <div>
+      <%= form.label :mat_actuador, style: "display: block" %>
+      <%= form.select :mat_actuador, ['AC', 'AI T 304'] %>
+    </div>
+
+    <div>
+      <%= form.label :mat_anclajes, style: "display: block" %>
+      <%= form.select :mat_anclajes, ['AI T 304', 'AC'] %>
+    </div>
+
+    <div>
+      <%= form.label :mat_recubrimientos, style: "display: block" %>
+      <%= form.select :mat_recubrimientos, ['AI T 304', 'AC'] %>
+    </div>
+
+    <div>
+      <%= form.label :mat_guias, style: "display: block" %>
+      <%= form.select :mat_guias, ['PUAD'] %>
+    </div>
+
+    <div>
+      <%= form.label :mat_sellos, style: "display: block" %>
+      <%= form.select :mat_sellos, ['Neopreno'] %>
+    </div>
+
+    <div>
+      <%= form.label :mat_vastago_roscado, style: "display: block" %>
+      <%= form.select :mat_vastago_roscado, ['AI T 304', 'AC'] %>
+    </div>
+
+    <div>
+      <%= form.label :mat_apoyos, style: "display: block" %>
+      <%= form.select :mat_apoyos, ['AI T 304', 'AC'] %>
+    </div>
+
+    <div>
+      <%= form.label :observaciones, style: "display: block" %>
+      <%= form.text_area :observaciones %>
+    </div>
+    <div>
+      <%= form.label :recibe, style: "display: block" %>
+      <%= form.text_field :recibe %>
+    </div>
+
+    
+
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
+  </div>

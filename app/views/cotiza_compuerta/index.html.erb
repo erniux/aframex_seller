@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Cotiza compuerta</h1>
+
+<div id="cotiza_compuerta">
+  <% @cotiza_compuerta.each do |cotiza_compuertum| %>
+    <%= render cotiza_compuertum %>
+    <p>
+      <%= link_to "Show this cotiza compuertum", cotiza_compuertum %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New cotiza compuertum", new_cotiza_compuertum_path %>
